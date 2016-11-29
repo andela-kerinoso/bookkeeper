@@ -16,6 +16,9 @@ class CategoryTest(TestCase):
 
         self.assertRaises(IntegrityError, category.save)
 
+    def test_print_of_category_object(self):
+        self.assertEquals('Biology', str(self.category))
+
 
 class BookTest(TestCase):
     """Test for Book model."""
@@ -37,6 +40,9 @@ class BookTest(TestCase):
         )
 
         self.assertRaises(IntegrityError, book.save)
+
+    def test_print_of_book_object(self):
+        self.assertEquals('Human Brain', str(self.book))
 
 
 class BookInventoryListViewTest(TestCase):
@@ -62,11 +68,6 @@ class BookInventoryListViewTest(TestCase):
         self.assertEquals('Human Brain', [book for book in response.context_data['books']][0].title)
 
     def test_search_with_book_title_insensitive(self):
-        response = self.client.get('/', data={'q': 'Human Brain'})
-
-        self.assertEquals('Human Brain', [book for book in response.context_data['books']][0].title)
-
-    def test_search_with_book_title_sensitive(self):
         response = self.client.get('/', data={'q': 'huMan braIn'})
 
         self.assertEquals('Human Brain', [book for book in response.context_data['books']][0].title)
