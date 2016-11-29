@@ -1,0 +1,10 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# dotenv
+.env
+
+# database
+db.sqlite3
+
+.DS_Store
