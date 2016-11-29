@@ -14,7 +14,7 @@ class BookInventoryListView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        if self.kwargs['category_num'] != '':
+        if self.kwargs['category_num']:
             context['books'] = Book.objects.filter(category=self.queryset[int(self.kwargs['category_num']) - 1])
         else:
             if 'q' in self.request.GET:
